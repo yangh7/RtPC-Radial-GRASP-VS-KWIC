@@ -1,0 +1,26 @@
+function res = mtimes(a,b)
+
+if a.adjoint
+	res = adjDx(b(:,:,:,1)) + adjDy(b(:,:,:,2));
+
+else
+	for tt=1:size(b,3),
+        Dx(:,:,tt) = b([2:end,end],:,tt) - b(:,:,tt); %#ok<AGROW>
+        Dy(:,:,tt) = b(:,[2:end,end],tt) - b(:,:,tt); %#ok<AGROW>
+    end
+    res = cat(4,Dx,Dy);
+end
+
+function res = adjDy(x)
+for tt=1:size(x,3),
+    res(:,:,tt) = x(:,[1,1:end-1],tt) - x(:,:,tt);
+    res(:,1,tt) = -x(:,1,tt);
+    res(:,end,tt) = x(:,end-1,tt);
+end
+
+function res = adjDx(x)
+for tt=1:size(x,3),
+    res(:,:,tt)= x([1,1:end-1],:,tt) - x(:,:,tt);
+    res(1,:,tt) = -x(1,:,tt);
+    res(end,:,tt) = x(end-1,:,tt);
+end 
