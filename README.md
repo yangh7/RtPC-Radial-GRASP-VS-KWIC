@@ -1,1 +1,1 @@
-# RTPC-Radial-CS-VS-KWIC
+# RTPC-Radial-GRASP-VS-KWIC
