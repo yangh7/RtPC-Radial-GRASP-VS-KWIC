@@ -192,7 +192,7 @@ param.TPCA = TempPCA();
 param.TTV = TV_Temp();
 param.STV = TV_2DPERF();
 param.Wavelet = Wavelet();
-param.nite = 8;
+param.nite = 9;
 param.display = 1;
 param.VW = 'on';
 
@@ -219,7 +219,7 @@ for ReconType = 1:NS
     param
     
     tmp_Recon_CS_TTV_TPCA = Recon_RadRTPC_grid;
-    ITER = 3
+    ITER = 5
     for ite = 1:ITER,
         disp( [ sprintf( 'iteration = %2d', ite )] )
         tmp_Recon_CS_TTV_TPCA = CSL1NlCg_TTV_TPCA_STV_VW( tmp_Recon_CS_TTV_TPCA, param );
